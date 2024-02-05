@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/SGE/js/main.js"></script>
+    <script src="/sge/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         body {
@@ -32,7 +32,7 @@
                 <div id="contrasena" class="form-text text-danger"></div>
             </div>
             <button type="submit" id="Login" class="btn btn-success">Iniciar Sesión</button>
-            <a href="crearUser.php" class="ms-2">Regístrate</a>
+            <a href="registro.php" class="ms-2">Regístrate</a>
         </form>
     </div>
 </body>

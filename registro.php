@@ -11,45 +11,64 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            color: white; /* Cambio de color del texto a blanco */
+            color: white;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px; /* Rounded corners */
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .form-label {
+            color: #f8f9fa!important; /* Ensuring labels are also white */
         }
     </style>
 </head>
-<body>
-    <div class="container mt-5">
+<body onLoad="cargar()">
+    <div class="container">
         <h1 class="text-center mb-4">Registro</h1>
-        <form action="createUser.php" method="post">
+        <form action="crearRegistro.php" method="post">
             <div class="mb-3">
-                <label for="username" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" id="username" name="user">
+                <label for="user" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" id="user" name="user">
+                <div id="nombre" class="form-text text-danger"></div>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email">
+                <div id="correo" class="form-text text-danger"></div>
             </div>
             <div class="mb-3">
-                <label for="password" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="password" name="pw">
+                <label for="pw" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="pw" name="pw">
+                <div id="contrasena" class="form-text text-danger"></div>
             </div>
             <div class="mb-3">
-                <label for="confirmPassword" class="form-label">Repetir contraseña</label>
-                <input type="password" class="form-control" id="confirmPassword" name="pwrep">
+                <label for="pwrep" class="form-label">Repetir contraseña</label>
+                <input type="password" class="form-control" id="pwrep" name="pwrep">
+                <div id="contrasenaRep" class="form-text text-danger"></div>
             </div>
             <div class="mb-3">
-                <label for="province" class="form-label">Provincia</label>
-                <input type="text" class="form-control" id="province" name="prov">
+                <label for="provincia" class="form-label">Provincia</label>
+                <select class="form-select" id="provincia" name="provincia">
+                    <option>Seleccione una Provincia...</option>
+                </select>
+                <div id="prov" class="form-text text-danger"></div>
             </div>
             <div class="mb-3">
-                <label for="city" class="form-label">Localidad</label>
-                <input type="text" class="form-control" id="city" name="loc">
+                <label for="localidad" class="form-label">Localidad</label>
+                <select class="form-select" id="localidad" name="localidad">
+                    <option>Seleccione una Localidad...</option>
+                </select>
+                <div id="loc" class="form-text text-danger"></div>
             </div>
             <div class="text-center">
-                <button type="submit" class="btn btn-success">Crear Usuario</button>
+                <button type="submit" class="btn btn-success" id="registra">Crear Usuario</button>
             </div>
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="/sge/js/main.js" defer></script>
 </body>
 </html>
-
