@@ -21,7 +21,7 @@ function botonLogear(event) {
 
 
     if (user == "") {
-        contenedorNombre.innerText = "Introduce un username";
+        contenedorNombre.innerText = "Introduce un usuario";
         event.preventDefault();
     }
     else {
@@ -88,7 +88,7 @@ function campoIncompleto(event) {
     var provincia = document.getElementById('provincia').value;
 
     if (user == "") {
-        contenedorNombre.innerText = "Introduce un username";
+        contenedorNombre.innerText = "Introduce un usuario";
         event.preventDefault();
     }
     else {
@@ -104,7 +104,7 @@ function campoIncompleto(event) {
 
     }
     if (pass == "") {
-        contenedorContrasena.innerText = "Introduce una contrasena";
+        contenedorContrasena.innerText = "Introduce una contraseña";
         event.preventDefault();
     }
     else {
