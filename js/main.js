@@ -70,7 +70,7 @@ function comprobarEmail(event) {
 }
 
 function cargar_provincias(event) {
-    fetch('/sge/json/provincias.json')
+    fetch('/SGE/proyectoPHP/json/provincias.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -93,7 +93,7 @@ function cargar_provincias(event) {
 }
 
 function cargar_poblaciones(event) {
-    fetch('/sge/json/poblaciones.json')
+    fetch('/SGE/proyectoPHP/json/poblaciones.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');

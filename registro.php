@@ -62,13 +62,26 @@
                 </select>
                 <div id="loc" class="form-text text-danger"></div>
             </div>
+
+            <div class="idiomas">
+                <label class="form-label">Idioma </label> &nbsp;
+                <div class="form-check form-check-inline"> <!-- Por programar... -->
+                    <input class="form-check-input" type="radio" name="idioma" id="spanish" value="espanol">
+                    <label class="form-check-label" for="spanish">Español</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="idioma" id="english" value="ingles">
+                    <label class="form-check-label" for="english">Inglés</label>
+                </div>
+            </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-success" id="registra">Crear Usuario</button>
+                <button type="submit" class="btn btn-primary" id="registra">Volver</button> <!-- Por programar... -->
             </div>
         </form>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <script src="/sge/js/main.js"></script>
+    <script src="/SGE/proyectoPHP/js/main.js"></script>
 </body>
 </html>

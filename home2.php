@@ -125,6 +125,6 @@
             </div>
         </div>
     </div>
-<script src="/sge/js/main.js"></script>
+<script src="/SGE/proyectoPHP/js/main.js"></script>
 </body>
 </html>

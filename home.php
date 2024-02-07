@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Inicio</title>
     <link rel="stylesheet" href="tu_estilo.css"> <!-- Asegúrate de tener tu archivo CSS para estilos -->
-    <script src="/sge/js/main.js" defer></script> <!-- Tu script JS -->
+    <script src="/SGE/proyectoPHP/js/main.js" defer></script> <!-- Tu script JS -->
 </head>
 <body>
     <header style="display: flex; justify-content: space-between; align-items: center;">
