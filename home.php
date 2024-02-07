@@ -26,7 +26,7 @@
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Descripción</th>
+                    <th>Descripcion</th>
                     <th>Precio</th>
                 </tr>
             </thead>
