@@ -4,6 +4,8 @@ require("db.php");
 
 try {
 
+  //falta cookies de idioma pero ???
+
 
     $stmt = $conn->prepare("INSERT into users (username, email, pass, provincia, localidad) VALUES (? , ? , ? , ? , ?)");
     $userOK=($_POST['user']);

@@ -2,61 +2,51 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Horizontal</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #f2f2f2;
-            padding: 10px;
-        }
-
-        .container a,
-        .container button {
-            text-decoration: none;
-            color: #333;
-            padding: 10px;
-        }
-
-        .container button {
-            background-color: #e53935;
-            border: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .container button:hover {
-            background-color: #c62828;
-        }
-
-        .right-section {
-            margin-left: auto;
-        }
-    </style>
+    <title>Inicio</title>
+    <link rel="stylesheet" href="tu_estilo.css"> <!-- Asegúrate de tener tu archivo CSS para estilos -->
+    <script src="/sge/js/main.js" defer></script> <!-- Tu script JS -->
 </head>
 <body>
-    <div class="container">
+    <header style="display: flex; justify-content: space-between; align-items: center;">
         <div>
-            <span>¡Bienvenido Jorge!</span>
-            <span>Madrid 15º</span>
-            <select>
-                <option value="es">ES</option>
-                <option value="en">EN</option>
-            </select>
-            <a href="#">Mis datos</a>
+            Bienvenido, usuario <!-- Aquí deberías poner el nombre del usuario -->
         </div>
-        <div class="right-section">
-            <button>Cerrar sesión</button>
+        <div id="tiempo">
+            <!-- El tiempo se cargará aquí -->
         </div>
+        <div>
+            <a href="logout.php">Logout</a> <!-- Asegúrate de implementar el script de logout -->
+        </div>
+    </header>
+
+    <div id="cuerpo" style="text-align: center; margin-top: 20px;">
+        <button id="btnChuches">Chuches</button>
+        <!-- Tabla de chuches, inicialmente oculta -->
+        <table id="tablaChuches" class="hidden" style="margin-top: 20px; width: 100%;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Ejemplo de contenido, deberías llenar esto con datos reales posiblemente desde tu JS o backend -->
+                <tr>
+                    <td>Gominolas</td>
+                    <td>Gominolas de sabores frutales</td>
+                    <td>1.50€</td>
+                </tr>
+                <tr>
+                    <td>Chocolate</td>
+                    <td>Barra de chocolate con almendras</td>
+                    <td>2.00€</td>
+                </tr>
+                <!-- Agrega más filas según sea necesario -->
+            </tbody>
+        </table>
     </div>
+
+    <!-- Aquí puedes insertar el script para la API del tiempo si es necesario -->
 </body>
 </html>
-
