@@ -196,7 +196,6 @@ function comprobarContrasenas(event) {
 
 function muestraChuches() {
     document.getElementById('tablaChuches').classList.toggle('hidden');
-    console.log("joder");
 }
 function muestraSnacks() {
     document.getElementById('tablaSnacks').classList.toggle('hidden');

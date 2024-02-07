@@ -1,12 +1,12 @@
 <?php
 
-//var_dump($_POST);
+var_dump($_POST);
 
 require("db.php");
 
 try {
     session_start();
-    $stmt = $conn->prepare("SELECT id, username, pass FROM users where username = ? and pass = ?");
+    $stmt = $conn->prepare("SELECT username, pass FROM users where username = ? and pass = ?");
 
     $stmt->execute([$_POST['user'],hash("sha256",$_POST['pw'])]);
     $result = $stmt->fetchAll();
@@ -18,7 +18,7 @@ try {
     if (count($result)>0){
         $_SESSION["name"]=$_POST['user'];
         $_SESSION["login"]=true;
-        header("Location: home.php");
+        header("Location:home.php");
         setcookie("idioma", "es", time()+3600);
         die();
     }else{

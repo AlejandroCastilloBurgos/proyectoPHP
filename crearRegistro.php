@@ -13,7 +13,7 @@ try {
     $emailOK =($_POST['email']);
     $provinciaOK=($_POST['provincia']);
     $localidadOK=($_POST['localidad']);
-    $stmt->execute([$userOK,$pwOK,$emailOK,$provinciaOK,$localidadOK]); //isset?? evitar nulls
+    $stmt->execute([$userOK,$emailOK,$pwOK,$provinciaOK,$localidadOK]); //isset?? evitar nulls
     
     $result = $stmt->fetchAll();
 
