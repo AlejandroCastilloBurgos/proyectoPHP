@@ -1,13 +1,31 @@
 function iniciar() {
     var log = document.getElementById('Login');
     var registra = document.getElementById('registra');
+    var btnChuches = document.getElementById('btnChuches');
+    var btnPlatos = document.getElementById('btnPlatos');
+    var btnFrutas = document.getElementById('btnFrutas');
+    var btnSnacks = document.getElementById('btnSnacks');
     if (log) {
         log.addEventListener('click', botonLogear);
     }
     if (registra) {
+        cargar_provincias();
+        cargar_poblaciones();
         registra.addEventListener('click', comprobarEmail);
         registra.addEventListener('click', campoIncompleto);
         registra.addEventListener('click', comprobarContrasenas);
+    }
+    if (btnChuches) {
+        btnChuches.addEventListener('click', muestraChuches);
+    }
+    if (btnFrutas) {
+        btnFrutas.addEventListener('click', muestraFrutas);
+    }
+    if (btnPlatos) {
+        btnPlatos.addEventListener('click', muestraPlatos);
+    }
+    if (btnSnacks) {
+        btnSnacks.addEventListener('click', muestraSnacks);
     }
 }
 
@@ -51,27 +69,51 @@ function comprobarEmail(event) {
     }
 }
 
-function cargar() {
-    cargar_provincias()
+function cargar_provincias(event) {
+    fetch('/sge/json/provincias.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var selectProvincias = document.getElementById('provincia');
+
+            // Iterar sobre cada provincia en el array y añadirlo como opción
+            data.forEach(provincia => {
+                var opcion = document.createElement('option');
+                opcion.textContent = provincia.label; // El nombre de la provincia como texto
+                selectProvincias.appendChild(opcion);
+            });
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
 }
 
-function cargar_provincias() {
-    var json = { "Cantabria": "", "Asturias": "", "Galicia": "", "Andalucia": "", "Extremadura": "" };
+function cargar_poblaciones(event) {
+    fetch('/sge/json/poblaciones.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var selectProvincias = document.getElementById('localidad');
 
-    addOptions("provincia", json);
+            // Iterar sobre cada provincia en el array y añadirlo como opción
+            data.forEach(provincia => {
+                var opcion = document.createElement('option');
+                opcion.textContent = provincia.label; // El nombre de la provincia como texto
+                selectProvincias.appendChild(opcion);
+            });
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
 }
-
-// Rutina para agregar opciones a un <select>
-function addOptions(domElement, json) {
-    var select = document.getElementsByName(domElement)[0];
-
-    Object.keys(json).forEach(function (elm) {
-        var option = document.createElement("option");
-        option.text = elm;
-        select.add(option);
-    })
-}
-
 
 function campoIncompleto(event) {
     var contenedorNombre = document.getElementById("nombre");
@@ -119,16 +161,16 @@ function campoIncompleto(event) {
         contenedorRepcontrasena.innerText = "";
 
     }
-    if (localidad == "") {
-        contenedorLocalidad.innerText = "Introduce una localidad";
+    if (localidad == "Seleccione una Localidad...") {
+        contenedorLocalidad.innerText = "Selecciona una localidad";
         event.preventDefault();
     }
     else {
         contenedorLocalidad.innerText = "";
 
     }
-    if (provincia == "") {
-        contenedorProvincia.innerText = "Introduce una provincia";
+    if (provincia == "Seleccione una Provincia...") {
+        contenedorProvincia.innerText = "Selecciona una provincia";
         event.preventDefault();
     }
     else {
@@ -143,15 +185,32 @@ function comprobarContrasenas(event) {
     var passrep = document.getElementById('pwrep').value;
 
     if (pass == passrep) {
-        console.log("las contraseñas coinciden")
+        console.log("perfe");
     } else {
         contenedorRepcontrasena.innerText = "Las contraseñas no coinciden"
         contenedorContrasena.innerText = "Las contraseñas no coinciden";
         event.preventDefault();
 
     }
-
-
 }
+
+function muestraChuches() {
+    document.getElementById('tablaChuches').classList.toggle('hidden');
+    console.log("joder");
+}
+function muestraSnacks() {
+    document.getElementById('tablaSnacks').classList.toggle('hidden');
+}
+function muestraFrutas() {
+    document.getElementById('tablaFrutas').classList.toggle('hidden');
+}
+function muestraPlatos() {
+    document.getElementById('tablaPlatos').classList.toggle('hidden');
+}
+
+
+
+
+
 
 

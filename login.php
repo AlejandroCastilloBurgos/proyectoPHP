@@ -35,5 +35,6 @@
             <a href="registro.php" class="ms-2">Regístrate</a>
         </form>
     </div>
+    
 </body>
 </html>
