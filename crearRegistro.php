@@ -7,13 +7,14 @@ try {
   //falta cookies de idioma pero ???
 
 
-    $stmt = $conn->prepare("INSERT into users (username, email, pass, provincia, localidad) VALUES (? , ? , ? , ? , ?)");
+    $stmt = $conn->prepare("INSERT into users (username, email, pass, provincia, localidad, idioma) VALUES (? , ? , ? , ? , ?, ?)");
     $userOK=($_POST['user']);
     $pwOK = hash("sha256",$_POST['pw']);
     $emailOK =($_POST['email']);
     $provinciaOK=($_POST['provincia']);
     $localidadOK=($_POST['localidad']);
-    $stmt->execute([$userOK,$emailOK,$pwOK,$provinciaOK,$localidadOK]); //isset?? evitar nulls
+    $idiomaOK=($_POST['idioma']);
+    $stmt->execute([$userOK,$emailOK,$pwOK,$provinciaOK,$localidadOK,$idiomaOK]); //isset?? evitar nulls
     
     $result = $stmt->fetchAll();
 

@@ -38,7 +38,8 @@
 <body>
     <div class="header">
         <div class="header-left">
-            Bienvenido, usuario
+            
+            <!-- aqui tenemos que poner el maldito user bienvenido !-->
         </div>
         <div class="header-center">
             <span>Temperatura: [Datos de API]</span>
@@ -48,6 +49,15 @@
             </select>
         </div>
         <div class="header-right">
+        <?php
+            require("db.php");
+            $query = "SELECT * FROM users WHERE id = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->execute([$_POST['id']]);
+            "<a href='misdatos.php?id=". $_POST['id'] ."'>
+            "?>
+        </div>
+        <div cl ass="header-right">
             <a href="#" class="logout">Logout</a>
         </div>
     </div>
@@ -62,13 +72,29 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
+                            <th>Peso</th>
+                            <th>Calorias Unidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Golosinas</td>
-                            <td>$1.00</td>
-                        </tr>
+                        <?php
+                            require("db.php");
+                            $query = "SELECT * FROM chucherias";
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll();
+
+                            echo '';
+                            foreach ($result as $row => $chucherias) {
+                                echo "<tr>";
+                                echo   '<td>' .htmlspecialchars($chucherias["Nombre"]) . '</td> <td> '. $chucherias["Precio Unitario"] . 
+                                '</td> <td>' . $chucherias["Peso"] . '</td> <td> ' . $chucherias["Calorias Unidad"] . '</td>' ;
+                                echo "<td> <a href='editarAlimentos.php?id=". $chucherias["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href=''>Borrar</a> </td>";
+
+                                echo "</tr>";
+                                }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -81,13 +107,29 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
+                            <th>Peso</th>
+                            <th>Calorias Unidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Papas fritas</td>
-                            <td>$2.00</td>
-                        </tr>
+                        <?php
+                            require("db.php");
+                            $querySnacks = "SELECT * FROM snacks";
+                            $stmt = $conn->prepare($querySnacks);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll();
+
+                            echo '';
+                            foreach ($result as $row => $snacks) {
+                                echo "<tr>";
+                                echo   '<td>' .htmlspecialchars($snacks["Nombre"]) . '</td> <td> '. $snacks["Precio Unitario"] . 
+                                '</td> <td>' . $snacks["Peso"] . '</td> <td> ' . $snacks["Calorias Unidad"] . '</td>' ;
+                                echo "<td> <a href='editarAlimentos.php?id=". $snacks["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href=''>Borrar</a> </td>";
+
+                                echo "</tr>";
+                                }
+                                ?>
                     </tbody>
                 </table>
             </div>
@@ -100,13 +142,30 @@
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
+                            <th>Peso</th>
+                            <th>Calorias Unidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Manzana</td>
-                            <td>$0.50</td>
-                        </tr>
+                        <?php
+                            require("db.php");
+                            $query = "SELECT * FROM frutas";
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll();
+
+                            echo '';
+                            foreach ($result as $row => $frutas) {
+                                echo "<tr>";
+                                echo   '<td>' .htmlspecialchars($frutas["Nombre"]) . '</td> <td> '. $frutas["Precio Unitario"] . 
+                                '</td> <td>' . $frutas["Peso"] . '</td> <td> ' . $frutas["Calorias Unidad"] . '</td>' ;
+                                echo "<td> <a href='editarAlimentos.php?id=". $frutas["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href=''>Borrar</a> </td>";
+
+                                echo "</tr>";
+                                }
+
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -115,17 +174,34 @@
             <div id="tablaPlatos" class="container-tabla hidden">
                 <!-- Ejemplo de tabla Platos -->
                 <table class="table">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Nombre</th>
                             <th>Precio</th>
+                            <th>Peso</th>
+                            <th>Calorias Unidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Plato del día</td>
-                            <td>$5.00</td>
-                        </tr>
+                        <?php
+                            require("db.php");
+                            $query = "SELECT * FROM platos";
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+                            $result = $stmt->fetchAll();
+
+                            echo '';
+                            foreach ($result as $row => $platos) {
+                                echo "<tr>";
+                                echo   '<td>' .htmlspecialchars($platos["Nombre"]) . '</td> <td> '. $platos["Precio Unitario"] . 
+                                '</td> <td>' . $platos["Peso"] . '</td> <td> ' . $platos["Calorias Unidad"] . '</td>' ;
+                                echo "<td> <a href='editarAlimentos.php?id=". $platos["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href=''>Borrar</a> </td>";
+
+                                echo "</tr>";
+                                }
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -134,3 +210,4 @@
 <script src="/sge/js/main.js"></script>
 </body>
 </html>
+

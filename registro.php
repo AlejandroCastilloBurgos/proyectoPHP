@@ -62,8 +62,20 @@
                 </select>
                 <div id="loc" class="form-text text-danger"></div>
             </div>
+            <div class="mb-3">
+                <label class="form-label">Idioma </label> &nbsp;
+                <div class="form-check form-check-inline"> <!-- Por programar... -->
+                    <input class="form-check-input" type="radio" name="idioma" id="spanish" value="espanol">
+                    <label class="form-check-label" for="spanish">Español</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="idioma" id="english" value="ingles">
+                    <label class="form-check-label" for="english">Inglés</label>
+                </div>
+            </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-success" id="registra">Crear Usuario</button>
+                <button type="submit" class="btn btn-primary" id="registra">Volver</button> <!-- Por programar... -->
             </div>
         </form>
     </div>
