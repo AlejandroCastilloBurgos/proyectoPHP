@@ -6,7 +6,7 @@ require("db.php");
 
 try {
     session_start();
-    $stmt = $conn->prepare("SELECT id, username, pass FROM users where username = ? and pass = ?");
+    $stmt = $conn->prepare("SELECT username, pass FROM users where username = ? and pass = ?");
 
     $stmt->execute([$_POST['user'],hash("sha256",$_POST['pw'])]);
     $result = $stmt->fetchAll();

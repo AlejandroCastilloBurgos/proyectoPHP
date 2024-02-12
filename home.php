@@ -2,51 +2,153 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio</title>
-    <link rel="stylesheet" href="tu_estilo.css"> <!-- Asegúrate de tener tu archivo CSS para estilos -->
-    <script src="/SGE/proyectoPHP/js/main.js" defer></script> <!-- Tu script JS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botones y Tablas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <style>
+        /* Estilos básicos para la estructura */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .header-center {
+            display: flex;
+            align-items: center;
+        }
+        .header-center span, .header-center select {
+            margin: 0 10px;
+        }
+        .header-right a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .header-right a:hover {
+            text-decoration: underline;
+        }
+        /* Ocultar tablas inicialmente */
+        .hidden {
+            display: none;
+        }
+        
+    </style>
 </head>
 <body>
-    <header style="display: flex; justify-content: space-between; align-items: center;">
-        <div>
-            Bienvenido, usuario <!-- Aquí deberías poner el nombre del usuario -->
+    <div class="header">
+        <div class="header-left">
+            Bienvenido, usuario
         </div>
-        <div id="tiempo">
-            <!-- El tiempo se cargará aquí -->
+        <div class="header-center">
+            <span>Temperatura: [Datos de API]</span>
+            <select>
+                <option value="ES">ES</option>
+                <option value="EN">EN</option>
+            </select>
         </div>
-        <div>
-            <a href="logout.php">Logout</a> <!-- Asegúrate de implementar el script de logout -->
+        <div class="header-right">
+        
+            <a href="#" class="misdatos">Mis datos</a>
         </div>
-    </header>
-
-    <div id="cuerpo" style="text-align: center; margin-top: 20px;">
-        <button id="btnChuches">Chuches</button>
-        <!-- Tabla de chuches, inicialmente oculta -->
-        <table id="tablaChuches" class="hidden" style="margin-top: 20px; width: 100%;">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ejemplo de contenido, deberías llenar esto con datos reales posiblemente desde tu JS o backend -->
-                <tr>
-                    <td>Gominolas</td>
-                    <td>Gominolas de sabores frutales</td>
-                    <td>1.50€</td>
-                </tr>
-                <tr>
-                    <td>Chocolate</td>
-                    <td>Barra de chocolate con almendras</td>
-                    <td>2.00€</td>
-                </tr>
-                <!-- Agrega más filas según sea necesario -->
-            </tbody>
-        </table>
+        <div class="header-right">
+            <a href="#" class="logout">Logout</a>
+        </div>
     </div>
 
-    <!-- Aquí puedes insertar el script para la API del tiempo si es necesario -->
+    <div class="container mt-4">
+        <div class="d-flex flex-column align-items-start">
+            <button id="btnChuches" class="btn btn-primary mb-2">Chuches</button>
+            <div id="tablaChuches" class="container-tabla hidden">
+                <!-- Ejemplo de tabla Chuches -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Peso</th>
+                            <th>Calorias Unidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            require("db.php");
+                            $query = "SELECT * FROM chucherias";
+                            $stmt = $conn->prepare($query);
+                            $stmt->execute();
+
+                            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                echo '<tr> 
+                                        <td>'.htmlspecialchars($row["Nombre"]).'</td> 
+                                        <td>'.htmlspecialchars($row["Precio Unitario"]).'</td> 
+                                        <td>'.htmlspecialchars($row["Peso"]).'</td> 
+                                        <td>'.htmlspecialchars($row["Calorias Unidad"]).'</td> 
+                                    </tr>';
+                            }
+                        ?>
+                    </tbody>
+            
+            
+            <button id="btnSnacks" class="btn btn-primary mb-2">Snacks</button>
+            <div id="tablaSnacks" class="container-tabla hidden">
+                <!-- Ejemplo de tabla Snacks -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Papas fritas</td>
+                            <td>$2.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <button id="btnFrutas" class="btn btn-primary mb-2">Frutas</button>
+            <div id="tablaFrutas" class="container-tabla hidden">
+                <!-- Ejemplo de tabla Frutas -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Manzana</td>
+                            <td>$0.50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <button id="btnPlatos" class="btn btn-primary mb-2">Platos</button>
+            <div id="tablaPlatos" class="container-tabla hidden">
+                <!-- Ejemplo de tabla Platos -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Plato del día</td>
+                            <td>$5.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<script src="/SGE/proyectoPHP/js/main.js"></script>
 </body>
 </html>
+

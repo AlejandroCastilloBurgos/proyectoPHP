@@ -208,6 +208,18 @@ function muestraPlatos() {
     document.getElementById('tablaPlatos').classList.toggle('hidden');
 }
 
+function cargarDatosUsuario() {
+     // Aquí puedes hacer una solicitud AJAX para obtener los datos del usuario desde tu backend
+    // Supongamos que los datos se reciben en un objeto llamado "datosUsuario"
+    
+    // Luego, puedes llenar los campos del formulario con esos datos
+    document.getElementById("user").value = datosUsuario.nombre;
+    document.getElementById("email").value = datosUsuario.email;
+    document.getElementById("provincia").value = datosUsuario.provincia;
+    document.getElementById("localidad").value = datosUsuario.localidad;
+    // Etcétera, llenar los demás campos del formulario con los datos del usuario
+}
+
 
 
 
