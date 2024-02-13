@@ -1,3 +1,4 @@
+window.onload = iniciar;
 function iniciar() {
     var log = document.getElementById('Login');
     var registra = document.getElementById('registra');
@@ -29,7 +30,7 @@ function iniciar() {
     }
 }
 
-window.onload = iniciar;
+
 
 function botonLogear(event) {
     var contenedorNombre = document.getElementById("nombre");
@@ -195,17 +196,42 @@ function comprobarContrasenas(event) {
 }
 
 function muestraChuches() {
-    document.getElementById('tablaChuches').classList.toggle('hidden');
+    var tabla = document.getElementById('tablaChuches');
+    if (tabla.style.display === 'none' || tabla.style.display === '') {
+        tabla.style.display = 'block';
+    } else {
+        tabla.style.display = 'none';
+    }
 }
-function muestraSnacks() {
-    document.getElementById('tablaSnacks').classList.toggle('hidden');
-}
+
 function muestraFrutas() {
-    document.getElementById('tablaFrutas').classList.toggle('hidden');
+    var tabla = document.getElementById('tablaFrutas');
+    if (tabla.style.display === 'none' || tabla.style.display === '') {
+        tabla.style.display = 'block';
+    } else {
+        tabla.style.display = 'none';
+    }
 }
+
 function muestraPlatos() {
-    document.getElementById('tablaPlatos').classList.toggle('hidden');
+    var tabla = document.getElementById('tablaPlatos');
+    if (tabla.style.display === 'none' || tabla.style.display === '') {
+        tabla.style.display = 'block';
+    } else {
+        tabla.style.display = 'none';
+    }
 }
+
+function muestraSnacks() {
+    var tabla = document.getElementById('tablaSnacks');
+    if (tabla.style.display === 'none' || tabla.style.display === '') {
+        tabla.style.display = 'block';
+    } else {
+        tabla.style.display = 'none';
+    }
+}
+
+
 
 
 
