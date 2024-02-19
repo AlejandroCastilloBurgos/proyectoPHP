@@ -1,3 +1,4 @@
+<?php require "require_login.php";  ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +7,6 @@
     <title>Botones y Tablas</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
     <style>
-        /* Estilos básicos para la estructura */
         .header {
             display: flex;
             justify-content: space-between;
@@ -15,21 +15,24 @@
             background-color: #f0f0f0;
             color: #333;
         }
+        .header-left {
+            flex-grow: 1;
+        }
         .header-center {
-            display: flex;
-            align-items: center;
+            flex-grow: 1;
+            text-align: center;
         }
-        .header-center span, .header-center select {
-            margin: 0 10px;
+        .header-right {
+            flex-grow: 1;
+            text-align: right;
         }
-        .header-right a {
-            color: #007bff;
-            text-decoration: none;
+        body {
+            background-image: url('background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color:white;         
         }
-        .header-right a:hover {
-            text-decoration: underline;
-        }
-        /* Ocultar tablas inicialmente */
         .hidden {
             display: none;
         }
@@ -38,30 +41,24 @@
 <body>
     <div class="header">
         <div class="header-left">
-            
-            <!-- aqui tenemos que poner el maldito user bienvenido !-->
+            <?php
+            if(isset($_SESSION["name"])){
+                $nombreUsuario = $_SESSION["name"];
+                echo "<p>Buenos días, " . htmlspecialchars($nombreUsuario) . " </p>";
+            }
+            ?>
         </div>
         <div class="header-center">
-            <span>Temperatura: [Datos de API]</span>
-            <select>
-                <option value="ES">ES</option>
-                <option value="EN">EN</option>
+            <span  id="temperaturaInfo">Cargando temperatura</span>
+            <select name="languages" id="languages">
+                <option value="es">ES</option>
+                <option value="en">ENG</option>
             </select>
         </div>
         <div class="header-right">
-        <?php
-            require("db.php");
-            $query = "SELECT * FROM users WHERE id = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->execute([$_POST['id']]);
-            "<a href='misdatos.php?id=". $_POST['id'] ."'>
-            "?>
-        </div>
-        <div class="header-right">
-            <a href="#" class="logout">Logout</a>
+            <a href="#" class="logout" id="logout">Logout</a>
         </div>
     </div>
-
     <div class="container mt-4">
         <div class="d-flex flex-column align-items-start">
             <button id="btnChuches" class="btn btn-primary mb-2">Chuches</button>
@@ -89,9 +86,8 @@
                                 echo "<tr>";
                                 echo   '<td>' .htmlspecialchars($chucherias["Nombre"]) . '</td> <td> '. $chucherias["Precio Unitario"] . 
                                 '</td> <td>' . $chucherias["Peso"] . '</td> <td> ' . $chucherias["Calorias Unidad"] . '</td>' ;
-                                echo "<td> <a href='editarAlimentos.php?id=". $chucherias["id"] ."'>Editar</a> </td>";
-                                echo "<td> <a href=''>Borrar</a> </td>";
-
+                                echo "<td> <a href='editarChuches.php?id=". $chucherias["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a class='btnBorrar' href='borrarChuches.php?id=" . $chucherias["id"] . "' onclick='event.preventDefault(); confirmarBorrar(this);'>Borrar</a> </td>";
                                 echo "</tr>";
                                 }
                         ?>
@@ -134,8 +130,8 @@
                                 echo "<tr>";
                                 echo   '<td>' .htmlspecialchars($snacks["Nombre"]) . '</td> <td> '. $snacks["Precio Unitario"] . 
                                 '</td> <td>' . $snacks["Peso"] . '</td> <td> ' . $snacks["Calorias Unidad"] . '</td>' ;
-                                echo "<td> <a href='editarAlimentos.php?id=". $snacks["id"] ."'>Editar</a> </td>";
-                                echo "<td> <a href=''>Borrar</a> </td>";
+                                echo "<td> <a href='editarSnacks.php?id=". $snacks["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href='borrarSnacks.php?id=" . $snacks["id"] . "' onclick='return confirm(\"¿Estás seguro de que deseas borrar este registro?\");'>Borrar</a> </td>";
 
                                 echo "</tr>";
                                 }
@@ -179,8 +175,8 @@
                                 echo "<tr>";
                                 echo   '<td>' .htmlspecialchars($frutas["Nombre"]) . '</td> <td> '. $frutas["Precio Unitario"] . 
                                 '</td> <td>' . $frutas["Peso"] . '</td> <td> ' . $frutas["Calorias Unidad"] . '</td>' ;
-                                echo "<td> <a href='editarAlimentos.php?id=". $frutas["id"] ."'>Editar</a> </td>";
-                                echo "<td> <a href=''>Borrar</a> </td>";
+                                echo "<td> <a href='editarFrutas.php?id=". $frutas["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href='borrarFrutas.php?id=" . $frutas["id"] . "' onclick='return confirm(\"¿Estás seguro de que deseas borrar este registro?\");'>Borrar</a> </td>";
 
                                 echo "</tr>";
                                 }
@@ -226,9 +222,8 @@
                                 echo "<tr>";
                                 echo   '<td>' .htmlspecialchars($platos["Nombre"]) . '</td> <td> '. $platos["Precio Unitario"] . 
                                 '</td> <td>' . $platos["Peso"] . '</td> <td> ' . $platos["Calorias Unidad"] . '</td>' ;
-                                echo "<td> <a href='editarAlimentos.php?id=". $platos["id"] ."'>Editar</a> </td>";
-                                echo "<td> <a href=''>Borrar</a> </td>";
-
+                                echo "<td> <a href='editarPlatos.php?id=". $platos["id"] ."'>Editar</a> </td>";
+                                echo "<td> <a href='borrarPlatos.php?id=" . $platos["id"] . "' onclick='return confirm(\"¿Estás seguro de que deseas borrar este registro?\");'>Borrar</a> </td>";
                                 echo "</tr>";
                                 }
                         ?>

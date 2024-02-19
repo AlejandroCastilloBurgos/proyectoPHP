@@ -6,6 +6,7 @@ function iniciar() {
     var btnPlatos = document.getElementById('btnPlatos');
     var btnFrutas = document.getElementById('btnFrutas');
     var btnSnacks = document.getElementById('btnSnacks');
+    var btnBorrar = document.getElementById('borrarChuches');
     if (log) {
         log.addEventListener('click', botonLogear);
     }
@@ -18,6 +19,7 @@ function iniciar() {
     }
     if (btnChuches) {
         btnChuches.addEventListener('click', muestraChuches);
+        muestraTiempo();
     }
     if (btnFrutas) {
         btnFrutas.addEventListener('click', muestraFrutas);
@@ -27,6 +29,9 @@ function iniciar() {
     }
     if (btnSnacks) {
         btnSnacks.addEventListener('click', muestraSnacks);
+    }
+    if (btnBorrar) {
+        btnBorrar.addEventListener('click', confirmarBorrar);
     }
 }
 
@@ -230,6 +235,62 @@ function muestraSnacks() {
         tabla.style.display = 'none';
     }
 }
+
+async function muestraTiempo() {
+    try {
+        // Primero, obtenemos la localidad desde el backend mediante la solicitud a prueba.php
+        const response = await fetch('/sge/obtieneTiempo.php');
+        const data = await response.json(); // Convertimos la respuesta en JSON
+        if (data.localidad) {
+            // Utilizamos la localidad obtenida en la URL de la API de clima
+            const localidad = data.localidad;
+            // Importante: Usamos template literals y encodeURIComponent para manejar espacios y caracteres especiales
+            const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${encodeURIComponent(localidad)}`;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'X-RapidAPI-Key': 'a39268a70fmshf4813aca446a55ep1b6cc5jsnd8c520259c4e',
+                    'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+                }
+            };
+            const response2 = await fetch(url, options);
+            const datos = await response2.json(); // Mejor usar .json() si la respuesta es JSON
+            console.log(datos);
+            const nombre = datos.location.name;
+            const temperatura = datos.current.temp_c;
+            console.log(nombre);
+            console.log(temperatura);
+            document.getElementById('temperaturaInfo').innerHTML = `Temperatura en ${nombre}: ${temperatura}°C`;
+        } else {
+            throw new Error('Localidad no proporcionada por el backend.');
+        }
+    } catch (error) {
+        console.error('Error capturado:', error);
+    }
+}
+
+function confirmarBorrar(event) {
+
+    // Ejemplo de uso de confirm
+    if (confirm("¿Estás seguro de que deseas realizar esta acción?")) {
+        // El usuario hizo clic en "Aceptar"
+        console.log("Acción confirmada por el usuario.");
+        // Aquí puedes colocar el código para realizar la acción
+    } else {
+        // El usuario hizo clic en "Cancelar"
+        preventDefault();
+        console.log("Acción cancelada por el usuario.");
+        // Aquí puedes manejar el caso de cancelación
+    }
+
+
+
+}
+
+
+
+
 
 
 
